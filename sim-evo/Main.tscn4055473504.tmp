@@ -1,0 +1,529 @@
+[gd_scene format=3 uid="uid://c0uh0wg2y7h0q"]
+
+[ext_resource type="Script" uid="uid://c5i67670vuxym" path="res://Scripts/Main.gd" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://crgtf40ocel3h" path="res://Scripts/World.gd" id="2_uu6xs"]
+[ext_resource type="Script" uid="uid://dlrwhof7etxc2" path="res://Scripts/camera_2d.gd" id="3_r0du0"]
+[ext_resource type="Script" uid="uid://bvubjejv485sj" path="res://Scripts/PopulationGraph.gd" id="4_cm0pq"]
+[ext_resource type="Script" uid="uid://v31l0l0a403a" path="res://Scripts/SimulationEditor.gd" id="5_fos0i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fos0i"]
+bg_color = Color(0.18039216, 0.18039216, 0.18039216, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.18039216, 0.18039216, 0.18039216, 1)
+
+[node name="Main" type="Node2D" unique_id=1635613271]
+script = ExtResource("1_glv2v")
+
+[node name="World" type="Node2D" parent="." unique_id=524170785]
+position = Vector2(200, 70)
+script = ExtResource("2_uu6xs")
+
+[node name="Camera2D" type="Camera2D" parent="World" unique_id=1964341027]
+visible = false
+script = ExtResource("3_r0du0")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=554795639]
+
+[node name="ControlPanel" type="PanelContainer" parent="UILayer" unique_id=310995757]
+offset_right = 380.0
+offset_bottom = 66.0
+size_flags_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/ControlPanel" unique_id=1589680585]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+offset_transform_enabled = true
+theme_override_constants/separation = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/ControlPanel/VBoxContainer" unique_id=776476887]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="PauseButton" type="Button" parent="UILayer/ControlPanel/VBoxContainer/HBoxContainer" unique_id=621285472]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+text = "Пауза"
+
+[node name="StepButton" type="Button" parent="UILayer/ControlPanel/VBoxContainer/HBoxContainer" unique_id=24930214]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+text = "Шаг"
+
+[node name="RestartButton" type="Button" parent="UILayer/ControlPanel/VBoxContainer/HBoxContainer" unique_id=1558400130]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+text = "Перезапуск"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UILayer/ControlPanel/VBoxContainer" unique_id=983159595]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="SpeedValueLabel" type="Label" parent="UILayer/ControlPanel/VBoxContainer/HBoxContainer2" unique_id=406060248]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 2
+text = "1x "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpeedSlider" type="HSlider" parent="UILayer/ControlPanel/VBoxContainer/HBoxContainer2" unique_id=1805142206]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UILayer/ControlPanel/VBoxContainer" unique_id=421899631]
+layout_mode = 2
+
+[node name="TicksLabel" type="Label" parent="UILayer/ControlPanel/VBoxContainer/HBoxContainer3" unique_id=416538613]
+layout_mode = 2
+text = "Тиков: 0"
+
+[node name="TimeLabel" type="Label" parent="UILayer/ControlPanel/VBoxContainer/HBoxContainer3" unique_id=1416345117]
+layout_mode = 2
+text = "Время: 00:00"
+
+[node name="StatsPanel" type="PanelContainer" parent="UILayer" unique_id=1762528663]
+custom_minimum_size = Vector2(180, 615)
+offset_top = 100.0
+offset_right = 180.0
+offset_bottom = 715.0
+size_flags_horizontal = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UILayer/StatsPanel" unique_id=625744074]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/StatsPanel/ScrollContainer" unique_id=1599732405]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="UILayer/StatsPanel/ScrollContainer/VBoxContainer" unique_id=137932105]
+layout_mode = 2
+text = "СТАТИСТИКА"
+
+[node name="PopulationLabel" type="Label" parent="UILayer/StatsPanel/ScrollContainer/VBoxContainer" unique_id=170461510]
+layout_mode = 2
+text = "Популяция"
+
+[node name="SpeciesLabel" type="Label" parent="UILayer/StatsPanel/ScrollContainer/VBoxContainer" unique_id=278839027]
+layout_mode = 2
+text = "Видов"
+
+[node name="TotalBornLabel" type="Label" parent="UILayer/StatsPanel/ScrollContainer/VBoxContainer" unique_id=470378208]
+layout_mode = 2
+text = "Всего родилось"
+
+[node name="TotalDiedLabel" type="Label" parent="UILayer/StatsPanel/ScrollContainer/VBoxContainer" unique_id=61423910]
+layout_mode = 2
+text = "Всего умерло"
+
+[node name="GrassLabel" type="Label" parent="UILayer/StatsPanel/ScrollContainer/VBoxContainer" unique_id=1371124881]
+layout_mode = 2
+text = "Трава"
+
+[node name="MeatLabel" type="Label" parent="UILayer/StatsPanel/ScrollContainer/VBoxContainer" unique_id=923414713]
+layout_mode = 2
+text = "Мясо"
+
+[node name="AvgEnergyLabel" type="Label" parent="UILayer/StatsPanel/ScrollContainer/VBoxContainer" unique_id=1813930982]
+layout_mode = 2
+text = "Ср. энергия"
+
+[node name="AvgAgeLabel" type="Label" parent="UILayer/StatsPanel/ScrollContainer/VBoxContainer" unique_id=357890430]
+layout_mode = 2
+text = "Ср. возраст"
+
+[node name="AvgSpeedLabel" type="Label" parent="UILayer/StatsPanel/ScrollContainer/VBoxContainer" unique_id=45456939]
+layout_mode = 2
+text = "Ср. скорость"
+
+[node name="GraphTitleLabel" type="Label" parent="UILayer/StatsPanel/ScrollContainer/VBoxContainer" unique_id=1867805975]
+layout_mode = 2
+text = "ГРАФИК ПОПУЛЯЦИИ"
+
+[node name="PopulationGraph" type="Control" parent="UILayer/StatsPanel/ScrollContainer/VBoxContainer" unique_id=1562533724]
+custom_minimum_size = Vector2(160, 160)
+custom_maximum_size = Vector2(160, 160)
+layout_mode = 2
+script = ExtResource("4_cm0pq")
+
+[node name="SimulationEditor" type="PanelContainer" parent="UILayer" unique_id=160996869]
+custom_minimum_size = Vector2(280, 660)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -250.0
+offset_bottom = 660.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fos0i")
+script = ExtResource("5_fos0i")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UILayer/SimulationEditor" unique_id=1375583141]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer" unique_id=265302478]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1121308557]
+layout_mode = 2
+text = "РЕДАКТОР СИМУЛЯЦИИ"
+
+[node name="Label2" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=216092356]
+layout_mode = 2
+text = "ГЕНЫ СУЩЕСТВ"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=915241876]
+layout_mode = 2
+
+[node name="vision_cells_count" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1919891306]
+layout_mode = 2
+min_value = 1.0
+max_value = 8.0
+value = 3.0
+
+[node name="VisionCells" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1123817361]
+layout_mode = 2
+text = "Зрение (клетки)"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1181084896]
+layout_mode = 2
+
+[node name="metabolism" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1139580655]
+layout_mode = 2
+min_value = 0.2
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Metabolism" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1242376826]
+layout_mode = 2
+text = "Метаболизм"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=635715393]
+layout_mode = 2
+
+[node name="digestion_efficiency" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1659958606]
+layout_mode = 2
+min_value = 0.3
+max_value = 0.9
+step = 0.1
+value = 0.5
+
+[node name="Digestion" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1653363827]
+layout_mode = 2
+text = "Пищеварение"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1827690184]
+layout_mode = 2
+
+[node name="reproduction_threshold" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=1866545087]
+layout_mode = 2
+min_value = 50.0
+max_value = 200.0
+step = 10.0
+value = 100.0
+
+[node name="ReproThreshold" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=609283271]
+layout_mode = 2
+text = "Порог размножения"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1586935891]
+layout_mode = 2
+
+[node name="mutation_rate" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer5" unique_id=658983033]
+layout_mode = 2
+min_value = 0.01
+max_value = 0.1
+step = 0.01
+value = 0.05
+
+[node name="MutationRate" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer5" unique_id=393999158]
+layout_mode = 2
+text = "Шанс мутаций"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1676068415]
+layout_mode = 2
+
+[node name="offspring_energy" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer6" unique_id=1584575874]
+layout_mode = 2
+min_value = 20.0
+step = 10.0
+value = 50.0
+
+[node name="OffspringEnergy" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer6" unique_id=270879533]
+layout_mode = 2
+text = "Энергия потомку"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1037145734]
+layout_mode = 2
+
+[node name="maturity_age" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer7" unique_id=2140032752]
+layout_mode = 2
+min_value = 1.0
+max_value = 15.0
+value = 5.0
+
+[node name="MaturityAge" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer7" unique_id=1048650919]
+layout_mode = 2
+text = "Возраст зрелости"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=2104717133]
+layout_mode = 2
+
+[node name="max_age" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer8" unique_id=1754663825]
+layout_mode = 2
+min_value = 30.0
+step = 10.0
+value = 50.0
+
+[node name="MaxAge" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer8" unique_id=1239381424]
+layout_mode = 2
+text = "Макс. возраст"
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1616818316]
+layout_mode = 2
+
+[node name="fertility_peak" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer9" unique_id=1705264075]
+layout_mode = 2
+min_value = 5.0
+max_value = 30.0
+step = 5.0
+value = 15.0
+
+[node name="FertilityPeak" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer9" unique_id=104828113]
+layout_mode = 2
+text = "Пик плодовитости"
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=82172775]
+layout_mode = 2
+
+[node name="aggression" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer10" unique_id=1774068420]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+
+[node name="Aggression" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer10" unique_id=923672179]
+layout_mode = 2
+text = "Агрессия"
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=717109783]
+layout_mode = 2
+
+[node name="defense" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer11" unique_id=230807076]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+
+[node name="Defense" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer11" unique_id=2053694030]
+layout_mode = 2
+text = "Защита"
+
+[node name="HBoxContainer12" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1635977599]
+layout_mode = 2
+
+[node name="sociality" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer12" unique_id=1310637929]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.3
+
+[node name="Sociality" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer12" unique_id=1902672400]
+layout_mode = 2
+text = "Социальность"
+
+[node name="HBoxContainer13" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=20586721]
+layout_mode = 2
+
+[node name="energy_storage" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer13" unique_id=2082602045]
+layout_mode = 2
+min_value = 100.0
+max_value = 300.0
+step = 10.0
+value = 150.0
+
+[node name="EnergyStorage" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer13" unique_id=579029545]
+layout_mode = 2
+text = "Запас энергии"
+
+[node name="HBoxContainer14" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1669340330]
+layout_mode = 2
+
+[node name="longevity" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer14" unique_id=545232660]
+layout_mode = 2
+min_value = 0.5
+max_value = 1.5
+step = 0.1
+value = 1.0
+
+[node name="Longevity" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer14" unique_id=73526922]
+layout_mode = 2
+text = "Долголетие"
+
+[node name="HBoxContainer15" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=264052771]
+layout_mode = 2
+
+[node name="toxin_resistance" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer15" unique_id=1153508568]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+
+[node name="ToxinResistance" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer15" unique_id=66680157]
+layout_mode = 2
+text = "Иммунитет к яду"
+
+[node name="HBoxContainer16" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=482878716]
+layout_mode = 2
+
+[node name="hibernation" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer16" unique_id=1426163973]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+
+[node name="Hibernation" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer16" unique_id=849712419]
+layout_mode = 2
+text = "Спячка"
+
+[node name="HBoxContainer17" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1111868073]
+layout_mode = 2
+
+[node name="memory_size" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer17" unique_id=1863404241]
+layout_mode = 2
+max_value = 5.0
+value = 1.0
+
+[node name="MemorySize" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer17" unique_id=322288301]
+layout_mode = 2
+text = "Память"
+
+[node name="HBoxContainer18" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=669127808]
+layout_mode = 2
+
+[node name="learning_rate" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer18" unique_id=1236773837]
+layout_mode = 2
+max_value = 0.5
+step = 0.05
+value = 0.1
+
+[node name="LearningRate" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer18" unique_id=1963415662]
+layout_mode = 2
+text = "Обучаемость"
+
+[node name="Label3" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=306283413]
+layout_mode = 2
+text = "ГЕНЫ ТРАВЫ"
+
+[node name="HBoxContainer19" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1754647278]
+layout_mode = 2
+
+[node name="grass_initial_count" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer19" unique_id=904929946]
+layout_mode = 2
+min_value = 50.0
+max_value = 500.0
+step = 50.0
+value = 100.0
+
+[node name="GrassInitialCount" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer19" unique_id=2125403834]
+layout_mode = 2
+text = "Начальное кол-во"
+
+[node name="HBoxContainer20" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1062908826]
+layout_mode = 2
+
+[node name="grass_max_energy" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer20" unique_id=2050156597]
+layout_mode = 2
+min_value = 10.0
+max_value = 50.0
+step = 5.0
+value = 20.0
+
+[node name="GrassMaxEnergy" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer20" unique_id=1347025427]
+layout_mode = 2
+text = "Макс. энергия"
+
+[node name="HBoxContainer21" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=584417890]
+layout_mode = 2
+
+[node name="grass_growth_rate" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer21" unique_id=471504091]
+layout_mode = 2
+min_value = 0.5
+max_value = 3.0
+step = 0.5
+value = 1.0
+
+[node name="GrassGrowthRate" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer21" unique_id=1927473058]
+layout_mode = 2
+text = "Скорость роста"
+
+[node name="HBoxContainer22" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=406221804]
+layout_mode = 2
+
+[node name="grass_reproduction_threshold" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer22" unique_id=467130388]
+layout_mode = 2
+min_value = 3.0
+max_value = 15.0
+value = 5.0
+
+[node name="GrassReproThreshold" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer22" unique_id=901807738]
+layout_mode = 2
+text = "Порог размножения"
+
+[node name="HBoxContainer23" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=2067690161]
+layout_mode = 2
+
+[node name="grass_reproduction_cost" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer23" unique_id=603647488]
+layout_mode = 2
+min_value = 2.0
+max_value = 10.0
+value = 5.0
+
+[node name="GrassReproCost" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer23" unique_id=1174048011]
+layout_mode = 2
+text = "Цена размножения"
+
+[node name="HBoxContainer24" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1044782153]
+layout_mode = 2
+
+[node name="grass_fertility" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer24" unique_id=1949523084]
+layout_mode = 2
+min_value = 0.1
+max_value = 0.9
+step = 0.1
+value = 0.5
+
+[node name="GrassFertility" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer24" unique_id=877167090]
+layout_mode = 2
+text = "Плодовитость"
+
+[node name="HBoxContainer25" type="HBoxContainer" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=521026249]
+layout_mode = 2
+
+[node name="grass_mutation_chance" type="SpinBox" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer25" unique_id=875665975]
+layout_mode = 2
+min_value = 0.01
+max_value = 0.1
+step = 0.01
+value = 0.04
+
+[node name="GrassMutationChance" type="Label" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/HBoxContainer25" unique_id=1421005228]
+layout_mode = 2
+text = "Шанс мутаций"
+
+[node name="ApplyButton" type="Button" parent="UILayer/SimulationEditor/ScrollContainer/VBoxContainer" unique_id=1226960246]
+layout_mode = 2
+text = "Применить"
+
+[connection signal="pressed" from="UILayer/SimulationEditor/ScrollContainer/VBoxContainer/ApplyButton" to="UILayer/SimulationEditor" method="_on_apply_pressed"]

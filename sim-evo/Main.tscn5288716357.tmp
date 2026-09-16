@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://c0uh0wg2y7h0q"]
+
+[ext_resource type="Script" uid="uid://c5i67670vuxym" path="res://Scripts/Main.gd" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://crgtf40ocel3h" path="res://Scripts/World.gd" id="2_uu6xs"]
+[ext_resource type="Script" uid="uid://dlrwhof7etxc2" path="res://Scripts/camera_2d.gd" id="3_r0du0"]
+
+[node name="Main" type="Node2D" unique_id=1635613271]
+script = ExtResource("1_glv2v")
+
+[node name="World" type="Node2D" parent="." unique_id=524170785]
+position = Vector2(200, 70)
+script = ExtResource("2_uu6xs")
+
+[node name="Camera2D" type="Camera2D" parent="World" unique_id=1964341027]
+visible = false
+script = ExtResource("3_r0du0")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=554795639]
+
+[node name="ControlPanel" type="PanelContainer" parent="UILayer" unique_id=310995757]
+offset_right = 380.0
+offset_bottom = 66.0
+size_flags_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/ControlPanel" unique_id=1589680585]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+offset_transform_enabled = true
+theme_override_constants/separation = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/ControlPanel/VBoxContainer" unique_id=776476887]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="PauseButton" type="Button" parent="UILayer/ControlPanel/VBoxContainer/HBoxContainer" unique_id=621285472]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+text = "Пауза"
+
+[node name="StepButton" type="Button" parent="UILayer/ControlPanel/VBoxContainer/HBoxContainer" unique_id=24930214]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+text = "Шаг"
+
+[node name="RestartButton" type="Button" parent="UILayer/ControlPanel/VBoxContainer/HBoxContainer" unique_id=1558400130]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+text = "Перезапуск"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UILayer/ControlPanel/VBoxContainer" unique_id=983159595]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="SpeedValueLabel" type="Label" parent="UILayer/ControlPanel/VBoxContainer/HBoxContainer2" unique_id=406060248]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 2
+text = "1x "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpeedSlider" type="HSlider" parent="UILayer/ControlPanel/VBoxContainer/HBoxContainer2" unique_id=1805142206]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="StatsPanel" type="PanelContainer" parent="UILayer" unique_id=1762528663]
+custom_minimum_size = Vector2(180, 640)
+offset_top = 70.0
+offset_right = 180.0
+offset_bottom = 710.0
+size_flags_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/StatsPanel" unique_id=1599732405]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="UILayer/StatsPanel/VBoxContainer" unique_id=137932105]
+layout_mode = 2
+text = "СТАТИСТИКА"
+
+[node name="PopulationLabel" type="Label" parent="UILayer/StatsPanel/VBoxContainer" unique_id=170461510]
+layout_mode = 2
+text = "Популяция: 0"
+
+[node name="SpeciesLabel" type="Label" parent="UILayer/StatsPanel/VBoxContainer" unique_id=278839027]
+layout_mode = 2
+text = "Видов: 0"
+
+[node name="PrimitiveLabel" type="Label" parent="UILayer/StatsPanel/VBoxContainer" unique_id=470378208]
+layout_mode = 2
+text = "Примитив: 0"
+
+[node name="AvgEnergyLabel" type="Label" parent="UILayer/StatsPanel/VBoxContainer" unique_id=61423910]
+layout_mode = 2
+text = "Ср. энергия: 0"
+
+[node name="AvgAgeLabel" type="Label" parent="UILayer/StatsPanel/VBoxContainer" unique_id=1371124881]
+layout_mode = 2
+text = "Ср. возраст: 0"
+
+[node name="AvgSpeedLabel" type="Label" parent="UILayer/StatsPanel/VBoxContainer" unique_id=923414713]
+layout_mode = 2
+text = "Ср. скорость: 0"
+
+[node name="GrassLabel" type="Label" parent="UILayer/StatsPanel/VBoxContainer" unique_id=1813930982]
+layout_mode = 2
+text = "Трава: 0"
+
+[node name="CorpsesLabel" type="Label" parent="UILayer/StatsPanel/VBoxContainer" unique_id=357890430]
+layout_mode = 2
+text = "Трупы: 0"
+
+[node name="Label2" type="Label" parent="UILayer/StatsPanel/VBoxContainer" unique_id=45456939]
+layout_mode = 2
+text = "РАФИК ПОПУЛЯЦИЙ:"
+
+[node name="GraphLabel" type="Label" parent="UILayer/StatsPanel/VBoxContainer" unique_id=1867805975]
+layout_mode = 2
